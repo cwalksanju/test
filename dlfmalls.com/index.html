@@ -1,0 +1,2809 @@
+<html lang="zh-CN"
+    style="--status-bar-height:0px; --top-window-height:0px; --window-left:0px; --window-right:0px; --window-margin:0px; font-size: 68px; --window-top:calc(var(--top-window-height) + 0px); --window-bottom:0px;">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <link rel="icon" href="/static/favicon.png">
+    <title></title>
+    <script>document.addEventListener('DOMContentLoaded', function () {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
+        })</script>
+    <link rel="stylesheet" href="/static/index.css">
+    <style type="text/css">
+        @font-face {
+            font-family: uniicons;
+            src: url(/static/uni.ttf)
+        }
+
+        @font-face {
+            font-family: pingfang-jian;
+            src: url(/static/pingfang-jian.ttf)
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: pingfang-jian, uniicons
+        }
+
+        .uni-body {
+            background: #f1f1f1
+        }
+
+        uni-button.submit {
+            background-color: #007aff;
+            color: #fff
+        }
+
+        uni-image {
+            will-change: transform
+        }
+
+        .uni-popup__wrapper-box {
+            max-height: 90%;
+            max-width: 90%;
+            min-width: 70%;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center
+        }
+
+        .my-dialog {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            vertical-align: middle;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            background-color: #fff;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            overflow: hidden;
+            height: 100%
+        }
+
+        .my-dialog-title {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: relative;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            min-height: 64px;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #333;
+            font-size: 24px
+        }
+
+        .my-dialog-content {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: relative;
+            padding: 12px;
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            height: calc(100% - 140px);
+            max-height: 400px
+                /* overflow: scroll; */
+        }
+
+        .my-dialog-footer {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: relative;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            min-height: 60px;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center
+        }
+
+        .my-dialog-btn {
+            text-align: center;
+            line-height: 60px;
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            height: 60px;
+            border-top: 1px solid #999;
+            border-right: 1px solid #999
+        }
+
+        .my-dialog-btn:last-child {
+            border-right: 0 solid #999;
+            color: #2a67fe
+        }
+
+        .my-dialog-btn:first-child {
+            color: #000
+        }
+
+        .bg-fff {
+            background-color: #fff
+        }
+
+        .bg-success {
+            background-color: #39b54a
+        }
+
+        .bg-primary {
+            background-color: #007aff
+        }
+
+        .bg-danger {
+            background-color: #ff4019
+        }
+
+        .shape-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%
+        }
+
+        .bg-rv {
+            background-image: -webkit-linear-gradient(290deg, #6739b6 50%, #e54d42 0);
+            background-image: linear-gradient(160deg, #6739b6 50%, #e54d42 0)
+        }
+
+        .bg-gv {
+            background-image: -webkit-linear-gradient(290deg, #6739b6 50%, #39b54a 0);
+            background-image: linear-gradient(160deg, #6739b6 50%, #39b54a 0)
+        }
+
+        .violet {
+            background-color: #6739b6
+        }
+
+        .green {
+            background-color: #3ab54b
+        }
+
+        .red {
+            background-color: #e54d42
+        }
+
+        .color-green {
+            color: #3ab54b
+        }
+
+        .color-red {
+            color: #e54d42
+        }
+
+        .color-fff {
+            color: #fff
+        }
+
+        .color-primary {
+            color: #007aff
+        }
+
+        .color-success {
+            color: #3fc44c
+        }
+
+        .color-danger {
+            color: #d9001b
+        }
+
+        .color-fbc343 {
+            color: #fbc343
+        }
+
+        .color-ffffff {
+            color: #fff
+        }
+
+        .primary-btn {
+            background-color: #007aff;
+            color: #fff
+        }
+
+        .cancel-btn {
+            /* 		background-color: #007aff;
+			color: #FFFFFF; */
+        }
+
+        #common-form-wrapper .uni-input {
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            height: 44px;
+            padding: 6px 12px;
+            margin-bottom: 12px;
+            background: #fff;
+            border-radius: 4px
+        }
+
+        #common-form-wrapper .uni-input .input-placeholder {
+            color: grey;
+            font-size: 15px
+        }
+
+        #common-form-wrapper .uni-input .uni-input-input {
+            font-size: 20px
+        }
+
+        .uni-easyinput .uni-easyinput__content {
+            background-color: #fff;
+            height: 44px;
+            border: 1px solid #f2f2f2
+        }
+
+        .uni-easyinput .uni-easyinput__content uni-input {
+            font-size: 16px
+        }
+
+        .icon-image {
+            width: 20px;
+            height: 20px
+        }
+
+        .uni-picker-action-cancel {
+            color: hsla(0, 0%, 100%, 0) !important
+        }
+
+        .uni-picker-action-cancel::before {
+            content: "cancel";
+            width: 120px;
+            color: #888 !important
+        }
+
+        .uni-picker-action-confirm {
+            color: hsla(0, 0%, 100%, 0) !important
+        }
+
+        .uni-picker-action-confirm::after {
+            content: "confirm";
+            width: 120px;
+            color: #007aff !important
+        }
+
+        .mt-72 {
+            margin-top: 72px
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item uni-text {
+            font-size: 11px !important
+        }
+
+        .mrl {
+            margin: 0 4px
+        }
+
+        /* 解决头条小程序组件内引入字体不生效的问题 */
+        html {
+            font-size: 10px !important
+        }
+
+        uni-page-head {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25)
+        }
+
+        .tabbar-wrapper {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25)
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        @font-face {
+            font-family: uniicons;
+            src: url(/static/fonts/uni.75745d34.ttf) format("truetype")
+        }
+
+        .uni-icons[data-v-4c782b3f] {
+            font-family: uniicons;
+            text-decoration: none;
+            text-align: center
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .uni-easyinput[data-v-08dfab0c] {
+            width: 100%;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            position: relative;
+            text-align: left;
+            color: #333;
+            font-size: 14px
+        }
+
+        .uni-easyinput__content[data-v-08dfab0c] {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            box-sizing: border-box;
+            min-height: 36px;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .uni-easyinput__content-input[data-v-08dfab0c] {
+            width: auto;
+            position: relative;
+            overflow: hidden;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            line-height: 2;
+            font-size: 14px
+        }
+
+        .is-textarea[data-v-08dfab0c] {
+            -webkit-box-align: start;
+            -webkit-align-items: flex-start;
+            align-items: flex-start
+        }
+
+        .is-textarea-icon[data-v-08dfab0c] {
+            margin-top: 5px
+        }
+
+        .uni-easyinput__content-textarea[data-v-08dfab0c] {
+            position: relative;
+            overflow: hidden;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            line-height: 1.5;
+            font-size: 14px;
+            padding-top: 6px;
+            padding-bottom: 10px;
+            height: 80px;
+            min-height: 80px;
+            width: auto
+        }
+
+        .input-padding[data-v-08dfab0c] {
+            padding-left: 10px
+        }
+
+        .content-clear-icon[data-v-08dfab0c] {
+            padding: 0 5px
+        }
+
+        .label-icon[data-v-08dfab0c] {
+            margin-right: 5px;
+            margin-top: -1px
+        }
+
+        .is-input-border[data-v-08dfab0c] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            box-sizing: border-box;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px
+        }
+
+        .is-required[data-v-08dfab0c] {
+            color: #dd524d
+        }
+
+        .uni-error-message[data-v-08dfab0c] {
+            position: absolute;
+            bottom: -17px;
+            left: 0;
+            line-height: 12px;
+            color: #dd524d;
+            font-size: 12px;
+            text-align: left
+        }
+
+        .uni-error-msg--boeder[data-v-08dfab0c] {
+            position: relative;
+            bottom: 0;
+            line-height: 22px
+        }
+
+        .is-input-error-border[data-v-08dfab0c] {
+            border-color: #dd524d
+        }
+
+        .uni-easyinput--border[data-v-08dfab0c] {
+            margin-bottom: 0;
+            padding: 10px 15px;
+            border-top: 1px #eee solid
+        }
+
+        .uni-easyinput-error[data-v-08dfab0c] {
+            padding-bottom: 0
+        }
+
+        .is-first-border[data-v-08dfab0c] {
+            border: none
+        }
+
+        .is-disabled[data-v-08dfab0c] {
+            background-color: #eee
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .phone-area-wrapper[data-v-2d16e1ce] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .phone-area-wrapper .uni-easyinput[data-v-2d16e1ce] .uni-easyinput__content {
+            border: 1px solid #ddd;
+            background-color: #fff;
+            height: 44px;
+            border-radius: 4px
+        }
+
+        .phone-area-wrapper .uni-easyinput[data-v-2d16e1ce] .uni-easyinput__content uni-input {
+            font-size: 16px
+        }
+
+        .phone-area-wrapper .icon-image[data-v-2d16e1ce] {
+            width: 20px;
+            height: 20px;
+            margin-left: 12px
+        }
+
+        .phone-area-wrapper .phone-area[data-v-2d16e1ce] {
+            font-size: 16px;
+            line-height: 33px;
+            height: 32px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .phone-area-wrapper .phone-area .national_flag[data-v-2d16e1ce] {
+            margin-right: 2px;
+            height: 24px;
+            width: 24px
+        }
+
+        .phone-area-wrapper .phone[data-v-2d16e1ce] {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            margin-left: 4px;
+            line-height: 32px;
+            height: 32px
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .segmented-control[data-v-c72ddc8a] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            box-sizing: border-box;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            height: 36px;
+            overflow: hidden;
+            cursor: pointer
+        }
+
+        .segmented-control__item[data-v-c72ddc8a] {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: inline-flex;
+            box-sizing: border-box;
+            position: relative;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .segmented-control__item--button[data-v-c72ddc8a] {
+            border-style: solid;
+            border-top-width: 1px;
+            border-bottom-width: 1px;
+            border-right-width: 1px;
+            border-left-width: 0
+        }
+
+        .segmented-control__item--button--first[data-v-c72ddc8a] {
+            border-left-width: 1px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px
+        }
+
+        .segmented-control__item--button--last[data-v-c72ddc8a] {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px
+        }
+
+        .segmented-control__item--text[data-v-c72ddc8a] {
+            border-bottom-style: solid;
+            border-bottom-width: 3px
+        }
+
+        .segmented-control__text[data-v-c72ddc8a] {
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center
+        }
+    </style>
+    <script charset="utf-8"
+        src="/static/js/pages-home-index~pages-userinfo-recharge~pages-userinfo-suggestion.5ee31715.js"></script>
+    <script charset="utf-8" src="/static/js/pages-home-index.e436bb3f.js"></script>
+    <style type="text/css">
+        .uni-app--showtabbar uni-page-wrapper {
+            display: block;
+            height: calc(100% - 50px);
+            height: calc(100% - 50px - constant(safe-area-inset-bottom));
+            height: calc(100% - 50px - env(safe-area-inset-bottom));
+        }
+
+        .uni-app--showtabbar uni-page-wrapper::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 50px;
+            height: calc(50px + constant(safe-area-inset-bottom));
+            height: calc(50px + env(safe-area-inset-bottom));
+        }
+
+        .uni-app--showtabbar uni-page-head[uni-page-head-type="default"]~uni-page-wrapper {
+            height: calc(100% - 44px - 50px);
+            height: calc(100% - 44px - constant(safe-area-inset-top) - 50px - constant(safe-area-inset-bottom));
+            height: calc(100% - 44px - env(safe-area-inset-top) - 50px - env(safe-area-inset-bottom));
+        }
+    </style>
+    <style type="text/css">
+        .uni-transition[data-v-d3037be4] {
+            -webkit-transition-timing-function: ease;
+            transition-timing-function: ease;
+            -webkit-transition-duration: .3s;
+            transition-duration: .3s;
+            -webkit-transition-property: opacity, -webkit-transform;
+            transition-property: opacity, -webkit-transform;
+            transition-property: transform, opacity;
+            transition-property: transform, opacity, -webkit-transform;
+            z-index: 998
+        }
+
+        .fade-in[data-v-d3037be4] {
+            opacity: 0
+        }
+
+        .fade-active[data-v-d3037be4] {
+            opacity: 1
+        }
+
+        .slide-top-in[data-v-d3037be4] {
+            /* transition-property: transform, opacity; */
+            -webkit-transform: translateY(-100%);
+            transform: translateY(-100%)
+        }
+
+        .slide-top-active[data-v-d3037be4] {
+            -webkit-transform: translateY(0);
+            transform: translateY(0)
+                /* opacity: 1; */
+        }
+
+        .slide-right-in[data-v-d3037be4] {
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%)
+        }
+
+        .slide-right-active[data-v-d3037be4] {
+            -webkit-transform: translateX(0);
+            transform: translateX(0)
+        }
+
+        .slide-bottom-in[data-v-d3037be4] {
+            -webkit-transform: translateY(100%);
+            transform: translateY(100%)
+        }
+
+        .slide-bottom-active[data-v-d3037be4] {
+            -webkit-transform: translateY(0);
+            transform: translateY(0)
+        }
+
+        .slide-left-in[data-v-d3037be4] {
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%)
+        }
+
+        .slide-left-active[data-v-d3037be4] {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+            opacity: 1
+        }
+
+        .zoom-in-in[data-v-d3037be4] {
+            -webkit-transform: scale(.8);
+            transform: scale(.8)
+        }
+
+        .zoom-out-active[data-v-d3037be4] {
+            -webkit-transform: scale(1);
+            transform: scale(1)
+        }
+
+        .zoom-out-in[data-v-d3037be4] {
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2)
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .uni-popup[data-v-204588a4] {
+            position: fixed;
+            z-index: 99
+        }
+
+        .fixforpc-z-index[data-v-204588a4] {
+            z-index: 999
+        }
+
+        .uni-popup__mask[data-v-204588a4] {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, .4);
+            opacity: 0
+        }
+
+        .mask-ani[data-v-204588a4] {
+            -webkit-transition-property: opacity;
+            transition-property: opacity;
+            -webkit-transition-duration: .2s;
+            transition-duration: .2s
+        }
+
+        .uni-top-mask[data-v-204588a4] {
+            opacity: 1
+        }
+
+        .uni-bottom-mask[data-v-204588a4] {
+            opacity: 1
+        }
+
+        .uni-center-mask[data-v-204588a4] {
+            opacity: 1
+        }
+
+        .uni-popup__wrapper[data-v-204588a4] {
+            display: block;
+            position: absolute
+        }
+
+        .top[data-v-204588a4] {
+            top: var(--window-top)
+        }
+
+        .fixforpc-top[data-v-204588a4] {
+            top: 0
+        }
+
+        .bottom[data-v-204588a4] {
+            bottom: 0
+        }
+
+        .uni-popup__wrapper-box[data-v-204588a4] {
+            display: block;
+            position: relative;
+            /* iphonex 等安全区设置，底部安全区适配 */
+            padding-bottom: constant(safe-area-inset-bottom);
+            padding-bottom: env(safe-area-inset-bottom)
+        }
+
+        .content-ani[data-v-204588a4] {
+            -webkit-transition-property: opacity, -webkit-transform;
+            transition-property: opacity, -webkit-transform;
+            transition-property: transform, opacity;
+            transition-property: transform, opacity, -webkit-transform;
+            -webkit-transition-duration: .2s;
+            transition-duration: .2s
+        }
+
+        .uni-top-content[data-v-204588a4] {
+            -webkit-transform: translateY(0);
+            transform: translateY(0)
+        }
+
+        .uni-bottom-content[data-v-204588a4] {
+            -webkit-transform: translateY(0);
+            transform: translateY(0)
+        }
+
+        .uni-center-content[data-v-204588a4] {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            opacity: 1
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .container[data-v-4f6aeec4] {
+            font-size: 14px;
+            line-height: 24px;
+            position: relative
+        }
+
+        .container .welcome-wrapper[data-v-4f6aeec4] {
+            height: 50px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+            padding: 2px;
+            margin-bottom: 12px
+        }
+
+        .container .welcome-wrapper .welcome[data-v-4f6aeec4] {
+            margin-top: 6px;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 14px;
+            color: #000
+        }
+
+        .container .welcome-wrapper .sub-title[data-v-4f6aeec4] {
+            font-size: 12px;
+            color: #777
+        }
+
+        .container .swiper-item-wrapper[data-v-4f6aeec4] {
+            height: 368px
+        }
+
+        .container .swiper-item uni-image[data-v-4f6aeec4] {
+            width: 100%;
+            height: 368px
+        }
+
+        .container .download[data-v-4f6aeec4] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            background-color: #e3e3e3;
+            color: #000;
+            height: 72px;
+            padding: 13px 16px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999
+        }
+
+        .container .download .logo[data-v-4f6aeec4] {
+            height: 48px;
+            width: 48px;
+            vertical-align: middle;
+            margin-right: 14px
+        }
+
+        .container .download .title[data-v-4f6aeec4] {
+            font-size: 15px;
+            color: #000
+        }
+
+        .container .download .d-btn[data-v-4f6aeec4] {
+            height: 32px;
+            padding: 4px 28px;
+            line-height: 20px;
+            font-size: 15px;
+            border-radius: 4px;
+            background-color: #fff
+        }
+
+        .container .download .d-btn-logo[data-v-4f6aeec4] {
+            height: 24px;
+            width: 24px
+        }
+
+        .container .goods-wrapper[data-v-4f6aeec4] {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 16px;
+            grid-gap: 13px;
+            background-color: #f5f5f5;
+            width: 100%;
+            position: relative
+        }
+
+        .container .goods-wrapper .goods-item[data-v-4f6aeec4] {
+            min-width: 165px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 9px 0 rgba(0, 0, 0, .3)
+        }
+
+        .container .goods-wrapper .goods-item .goods-logo[data-v-4f6aeec4] {
+            width: 165px;
+            height: 165px;
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px
+        }
+
+        .container .goods-wrapper .goods-item .title[data-v-4f6aeec4] {
+            font-size: 14px;
+            letter-spacing: 1.05px;
+            line-height: 20px;
+            height: 20px;
+            margin: 8px 12px;
+            text-align: left;
+            color: #000;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis
+        }
+
+        .container .goods-wrapper .goods-item .desc[data-v-4f6aeec4] {
+            font-size: 12px;
+            letter-spacing: .9px;
+            text-align: left;
+            line-height: 18px;
+            height: 18px;
+            margin: 8px 12px;
+            color: #777;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis
+        }
+
+        .container .goods-wrapper .goods-item .price[data-v-4f6aeec4] {
+            font-size: 14px;
+            letter-spacing: 1.05px;
+            line-height: 20px;
+            height: 20px;
+            margin: 8px 12px;
+            text-align: left;
+            color: #000;
+            font-weight: 700
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .container[data-v-3d767679] {
+            font-size: 1.4rem;
+            max-width: 100%;
+            line-height: 24px;
+            position: relative
+        }
+
+        .container .search-top[data-v-3d767679] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            background-color: #fff;
+            color: #777;
+            height: 66px;
+            padding: 13px 16px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25)
+        }
+
+        .container .search-top[data-v-3d767679] .uni-easyinput .uni-easyinput__content {
+            border-radius: 22px;
+            padding-left: 10px
+        }
+
+        .container .search-top[data-v-3d767679] .uni-easyinput .input-placeholder {
+            font-size: 15px
+        }
+
+        .container .search-top .icon-image[data-v-3d767679] {
+            margin-right: 10px
+        }
+
+        .container .goods-wrapper[data-v-3d767679] {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-top: 76px
+        }
+
+        .container .goods-wrapper .goods-item[data-v-3d767679] {
+            padding: 6px;
+            width: 46%;
+            margin: 6px 6px;
+            background-size: contain;
+            background-position: 50%;
+            position: relative;
+            z-index: 1;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 9px 0 rgba(0, 0, 0, .3)
+        }
+
+        .container .goods-wrapper .goods-item .goods-logo[data-v-3d767679] {
+            width: 165px;
+            height: 165px;
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px
+        }
+
+        .container .goods-wrapper .goods-item .title[data-v-3d767679] {
+            position: relative;
+            font-size: 14px;
+            letter-spacing: 1.05px;
+            line-height: 20px;
+            height: 20px;
+            margin: 8px 12px;
+            text-align: left;
+            color: #000;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis
+        }
+
+        .container .goods-wrapper .goods-item .desc[data-v-3d767679] {
+            position: relative;
+            font-size: 12px;
+            letter-spacing: .9px;
+            text-align: left;
+            line-height: 18px;
+            height: 18px;
+            margin: 8px 12px;
+            color: #777;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis
+        }
+
+        .container .goods-wrapper .goods-item .price[data-v-3d767679] {
+            position: relative;
+            font-size: 14px;
+            letter-spacing: 1.05px;
+            line-height: 20px;
+            height: 20px;
+            margin: 8px 12px;
+            text-align: left;
+            color: #000;
+            font-weight: 700
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .uni-pagination[data-v-4cd42de6] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .uni-pagination__btn[data-v-4cd42de6] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            width: 60px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            position: relative;
+            background-color: #f8f8f8;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            text-align: center;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #e5e5e5;
+            cursor: pointer
+        }
+
+        .uni-pagination__child-btn[data-v-4cd42de6] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            font-size: 14px;
+            position: relative;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            text-align: center
+        }
+
+        .uni-pagination__num[data-v-4cd42de6] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            color: #333
+        }
+
+        .uni-pagination__num-current[data-v-4cd42de6] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row
+        }
+
+        .uni-pagination__num-current-text[data-v-4cd42de6] {
+            font-size: 15px
+        }
+
+        .uni-pagination--enabled[data-v-4cd42de6] {
+            color: #333;
+            opacity: 1
+        }
+
+        .uni-pagination--disabled[data-v-4cd42de6] {
+            opacity: .3;
+            cursor: not-allowed
+        }
+
+        .uni-pagination--hover[data-v-4cd42de6] {
+            color: rgba(0, 0, 0, .6);
+            background-color: #f1f1f1
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .uni-numbox[data-v-0d7fd499] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            height: 35px;
+            line-height: 35px;
+            width: 120px
+        }
+
+        .uni-cursor-point[data-v-0d7fd499] {
+            cursor: pointer
+        }
+
+        .uni-numbox__value[data-v-0d7fd499] {
+            background-color: #fff;
+            width: 40px;
+            height: 35px;
+            text-align: center;
+            font-size: 16px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #e5e5e5;
+            border-left-width: 0;
+            border-right-width: 0
+        }
+
+        .uni-numbox__minus[data-v-0d7fd499] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            font-size: 20px;
+            color: #333;
+            background-color: #f8f8f8;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #e5e5e5;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            border-right-width: 0
+        }
+
+        .uni-numbox__plus[data-v-0d7fd499] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #e5e5e5;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: #f8f8f8;
+            border-left-width: 0
+        }
+
+        .uni-numbox--text[data-v-0d7fd499] {
+            font-size: 20px;
+            color: #333
+        }
+
+        .uni-numbox--disabled[data-v-0d7fd499] {
+            color: silver;
+            cursor: not-allowed
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .container[data-v-16231a92] {
+            font-size: 14px;
+            line-height: 24px
+        }
+
+        .container .header[data-v-16231a92] {
+            border-radius: 5px;
+            background-color: #2a67fe;
+            color: #fff;
+            margin: 12px 12px 16px;
+            padding: 20px;
+            height: 116px
+        }
+
+        .container .header .balance[data-v-16231a92] {
+            line-height: 20px;
+            font-size: 14px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            letter-spacing: 1.05px
+        }
+
+        .container .header .balance .right[data-v-16231a92] {
+            margin-right: 20px
+        }
+
+        .container .header .balance .rotate[data-v-16231a92] {
+            -webkit-animation: rotate-data-v-16231a92 1s ease-in;
+            animation: rotate-data-v-16231a92 1s ease-in
+        }
+
+        @-webkit-keyframes rotate-data-v-16231a92 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg)
+            }
+
+            100% {
+                -webkit-transform: rotate(2turn);
+                transform: rotate(2turn)
+            }
+        }
+
+        @keyframes rotate-data-v-16231a92 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg)
+            }
+
+            100% {
+                -webkit-transform: rotate(2turn);
+                transform: rotate(2turn)
+            }
+        }
+
+        .container .header .btn-wrapper[data-v-16231a92] {
+            margin-top: 16px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            height: 40px
+        }
+
+        .container .header .btn-wrapper .recahrge[data-v-16231a92] {
+            background: #39b54a;
+            color: #fff;
+            margin: 0;
+            margin-right: 12px;
+            width: 96px
+        }
+
+        .container .header .btn-wrapper .rule[data-v-16231a92] {
+            background: #fff;
+            color: #2a67fe;
+            margin-right: 10px
+        }
+
+        .container .header .btn-wrapper .super[data-v-16231a92] {
+            color: #fff;
+            background-color: #39b54a
+        }
+
+        .container .header .btn-wrapper .btn[data-v-16231a92] {
+            font-size: 14px;
+            padding: 0 10px
+        }
+
+        .container .bet-result[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            height: 32px;
+            background-color: rgba(0, 122, 255, .3)
+        }
+
+        .container .bet-result .value[data-v-16231a92] {
+            color: #007aff;
+            padding: 0 6px;
+            font-weight: 700
+        }
+
+        .container .nav-tab[data-v-16231a92] {
+            background: #fff
+        }
+
+        .container .nav-tab[data-v-16231a92] .segmented-control__text span {
+            font-size: 15px;
+            color: #555
+        }
+
+        .container .color-btn-wrapper[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            padding: 19px
+        }
+
+        .container .color-btn-wrapper .green[data-v-16231a92] {
+            line-height: 20px;
+            background-color: #39b54a;
+            color: #fff;
+            font-size: 13px
+        }
+
+        .container .color-btn-wrapper .violet[data-v-16231a92] {
+            line-height: 20px;
+            background-color: #6739b6;
+            color: #fff;
+            font-size: 13px;
+            margin: 0 12px
+        }
+
+        .container .color-btn-wrapper .red[data-v-16231a92] {
+            line-height: 20px;
+            background-color: #ff4019;
+            color: #fff;
+            font-size: 13px
+        }
+
+        .container .number-btn-wrapper[data-v-16231a92] {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            padding: 0 19px;
+            grid-gap: 10px
+        }
+
+        .container .number-btn-wrapper uni-button[data-v-16231a92] {
+            width: 100%;
+            font-size: 15px
+        }
+
+        .container .number-btn-wrapper .btn-1[data-v-16231a92],
+        .container .number-btn-wrapper .btn-3[data-v-16231a92],
+        .container .number-btn-wrapper .btn-7[data-v-16231a92],
+        .container .number-btn-wrapper .btn-9[data-v-16231a92] {
+            background-color: #39b54a;
+            color: #fff
+        }
+
+        .container .number-btn-wrapper .btn-2[data-v-16231a92],
+        .container .number-btn-wrapper .btn-4[data-v-16231a92],
+        .container .number-btn-wrapper .btn-6[data-v-16231a92],
+        .container .number-btn-wrapper .btn-8[data-v-16231a92] {
+            background-color: #e54d42;
+            color: #fff
+        }
+
+        .container .number-btn-wrapper .btn-0[data-v-16231a92] {
+            background-image: -webkit-linear-gradient(290deg, #6739b6 50%, #e54d42 0);
+            background-image: linear-gradient(160deg, #6739b6 50%, #e54d42 0);
+            color: #fff
+        }
+
+        .container .number-btn-wrapper .btn-5[data-v-16231a92] {
+            background-image: -webkit-linear-gradient(290deg, #6739b6 50%, #39b54a 0);
+            background-image: linear-gradient(160deg, #6739b6 50%, #39b54a 0);
+            color: #fff
+        }
+
+        .container .diasble .btn[data-v-16231a92] {
+            -webkit-filter: grayscale(50%);
+            filter: grayscale(50%)
+        }
+
+        .container .period-wrapper[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            padding: 0 12px;
+            margin-top: 16px
+        }
+
+        .container .period-wrapper .left[data-v-16231a92] {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column
+        }
+
+        .container .period-wrapper .left uni-view[data-v-16231a92] {
+            font-size: 15px;
+            color: #333
+        }
+
+        .container .period-wrapper .left uni-view .logo[data-v-16231a92] {
+            height: 16px;
+            width: 16px
+        }
+
+        .container .period-wrapper .left .value[data-v-16231a92] {
+            font-size: 24px;
+            color: #333;
+            padding-left: 16px
+        }
+
+        .container .period-wrapper .right[data-v-16231a92] {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: end;
+            -webkit-align-items: flex-end;
+            align-items: flex-end
+        }
+
+        .container .period-wrapper .right uni-text[data-v-16231a92] {
+            font-size: 15px;
+            color: #333
+        }
+
+        .container .period-wrapper .right .value[data-v-16231a92] {
+            font-size: 24px;
+            color: #000
+        }
+
+        .container .record-wrapper[data-v-16231a92] {
+            background-color: #fff;
+            margin-top: 20px
+        }
+
+        .container .record-title[data-v-16231a92] {
+            height: 50px;
+            font-size: 15px;
+            line-height: 50px;
+            font-weight: 700;
+            color: #555;
+            text-align: center;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .container .record-title .logo[data-v-16231a92] {
+            height: 16px;
+            width: 16px
+        }
+
+        .container .record-item-wrapper[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            font-size: 14px;
+            height: 44px;
+            padding: 0 12px
+        }
+
+        .container .record-item-wrapper.record-item-header[data-v-16231a92] {
+            color: #333;
+            height: 48px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #777;
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #e5e5e5
+        }
+
+        .container .record-item-wrapper .left[data-v-16231a92] {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1
+        }
+
+        .container .record-item-wrapper .center[data-v-16231a92] {
+            width: 70px;
+            text-align: center
+        }
+
+        .container .record-item-wrapper .right[data-v-16231a92] {
+            width: 70px;
+            text-align: right
+        }
+
+        .container .record-item-wrapper .right .color-wrapper[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: end;
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end
+        }
+
+        .container .record-item-wrapper .right .color-wrapper .shape-circle[data-v-16231a92] {
+            margin-right: 6px
+        }
+
+        .container .my-period-wrapper[data-v-16231a92] {
+            background-color: #fff;
+            margin-top: 12px
+        }
+
+        .container .my-period-title[data-v-16231a92] {
+            height: 50px;
+            font-size: 15px;
+            line-height: 50px;
+            font-weight: 700;
+            color: #555;
+            text-align: center;
+            padding: 0 12px;
+            border-bottom: 1px solid #f5f5f5;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .container .my-period-title .logo[data-v-16231a92] {
+            height: 16px;
+            width: 16px
+        }
+
+        .container .period-item[data-v-16231a92] {
+            padding: 0 12px
+        }
+
+        .container .period-item .period-header[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            height: 44px
+        }
+
+        .container .period-item .period-header .left[data-v-16231a92] {
+            width: 120px
+        }
+
+        .container .period-item .period-header .center[data-v-16231a92] {
+            width: 80px;
+            text-align: left
+        }
+
+        .container .period-item .period-header .right[data-v-16231a92] {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            text-align: right
+        }
+
+        .container .period-item .period-header .right .icon-wrapper[data-v-16231a92] {
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+            display: inline-block
+        }
+
+        .container .period-item .period-header .right .up[data-v-16231a92] {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg)
+        }
+
+        .container .period-item .period-content .detail[data-v-16231a92] {
+            color: #3ab54b
+        }
+
+        .container .period-item .period-content>uni-view[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            justify-content: space-between
+        }
+
+        .container .period-item .period-content>uni-view .result[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .container .period-item .period-content>uni-view .result .value[data-v-16231a92] {
+            margin-right: 6px
+        }
+
+        .container .period-item .period-content .color-wrapper[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: end;
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end
+        }
+
+        .container .period-item .period-content .color-wrapper .shape-circle[data-v-16231a92] {
+            margin-right: 6px
+        }
+
+        .container .order-wrapper[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            width: 100%
+        }
+
+        .container .order-wrapper .order-title[data-v-16231a92] {
+            line-height: 20px;
+            font-size: 15px;
+            color: #777;
+            letter-spacing: 1.13px;
+            margin-bottom: 8px
+        }
+
+        .container .order-wrapper .money-select[data-v-16231a92] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex
+        }
+
+        .container .order-wrapper .money-select .money-item[data-v-16231a92] {
+            border-radius: 4px;
+            color: #555;
+            background-color: #f5f5f5;
+            width: 66px;
+            height: 42px;
+            text-align: center;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            margin-right: 8px
+        }
+
+        .container .order-wrapper .money-select .money-green[data-v-16231a92] {
+            background-color: #39b54a;
+            color: #fff
+        }
+
+        .container .order-wrapper .money-select .money-red[data-v-16231a92] {
+            background-color: #e54d42;
+            color: #fff
+        }
+
+        .container .order-wrapper .money-select .money-violet[data-v-16231a92] {
+            background-color: #6739b6;
+            color: #fff
+        }
+
+        .container .order-wrapper .money-select .money-primary[data-v-16231a92] {
+            background-color: #2a67fe;
+            color: #fff
+        }
+
+        .container .order-wrapper .order-number[data-v-16231a92] {
+            margin-top: 12px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            margin-top: 32px;
+            margin-bottom: 12px
+        }
+
+        .container .order-wrapper .order-number .span[data-v-16231a92] {
+            line-height: 20px;
+            font-size: 15px;
+            color: #777;
+            letter-spacing: 1.13px;
+            margin-right: 12px
+        }
+
+        .container .order-wrapper .order-total-money[data-v-16231a92] {
+            line-height: 20px;
+            font-size: 15px;
+            color: #333
+        }
+
+        .container .order-wrapper .order-total-money .span[data-v-16231a92] {
+            margin-left: 8px
+        }
+
+        .container .order-wrapper .order-total-money .money-green[data-v-16231a92] {
+            color: #39b54a;
+            font-weight: 700
+        }
+
+        .container .order-wrapper .order-total-money .money-red[data-v-16231a92] {
+            color: #e54d42;
+            font-weight: 700
+        }
+
+        .container .order-wrapper .order-total-money .money-violet[data-v-16231a92] {
+            color: #6739b6;
+            font-weight: 700
+        }
+
+        .container .order-wrapper .order-total-money .money-primary[data-v-16231a92] {
+            color: #2a67fe;
+            font-weight: 700
+        }
+
+        .container .order-wrapper .agree[data-v-16231a92] {
+            margin-top: 12px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .container .order-wrapper .agree .default[data-v-16231a92] {
+            color: #007aff;
+            opacity: .7;
+            text-decoration: underline;
+            padding: 0 6px
+        }
+
+        .container .btn[data-v-16231a92] {
+            position: relative;
+            border: 0;
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: inline-flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 0 19px;
+            font-size: 17px;
+            height: 40px;
+            text-decoration: none;
+            overflow: visible;
+            -webkit-transform: translate(0);
+            transform: translate(0);
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease
+        }
+    </style>
+    <style type="text/css">
+        .mix-tree-list[data-v-286a942c] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            padding-left: 15px
+        }
+
+        .mix-tree-item[data-v-286a942c] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            font-size: 15px;
+            color: #333;
+            height: 0;
+            opacity: 0;
+            -webkit-transition: .2s;
+            transition: .2s;
+            position: relative
+        }
+
+        .mix-tree-item.border[data-v-286a942c] {
+            border-bottom: 1px solid #eee
+        }
+
+        .mix-tree-item.show[data-v-286a942c] {
+            height: 40px;
+            opacity: 1
+        }
+
+        .mix-tree-icon[data-v-286a942c] {
+            width: 13px;
+            height: 13px;
+            margin-right: 4px;
+            opacity: .9
+        }
+
+        .mix-tree-item.showchild[data-v-286a942c]:before {
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg)
+        }
+
+        .mix-tree-item.last[data-v-286a942c]:before {
+            opacity: 0
+        }
+
+        /* 自加 */
+        .total-cell[data-v-286a942c] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex
+        }
+
+        .van-cell[data-v-286a942c] {
+            /* padding-top: 18rpx; */
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .container[data-v-85b3cc42] {
+            padding: 20px 20px 0;
+            font-size: 14px;
+            line-height: 24px
+        }
+
+        .container .mt-10[data-v-85b3cc42] {
+            margin-top: 10px
+        }
+
+        .container .my-dialog-content .uni-input[data-v-85b3cc42] {
+            padding: 0 20px
+        }
+
+        .container .header[data-v-85b3cc42] {
+            background-color: #2a67fe;
+            border-radius: 5px;
+            padding: 16px 12px;
+            color: #fff
+        }
+
+        .container .header .user-icon-image[data-v-85b3cc42] {
+            width: 44px !important;
+            height: 44px !important
+        }
+
+        .container .header .top[data-v-85b3cc42] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .container .header .top .top-center-wrapper[data-v-85b3cc42] {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            padding-left: 10px
+        }
+
+        .container .header .top .top-center-wrapper .top-center[data-v-85b3cc42] {
+            opacity: .7
+        }
+
+        .container .header .top .top-center-wrapper .top-center .right[data-v-85b3cc42] {
+            padding-left: 6px;
+            font-size: 12px
+        }
+
+        .container .header .center[data-v-85b3cc42] {
+            margin-left: 54px;
+            line-height: 32px;
+            opacity: .7
+        }
+
+        .container .header .center .right[data-v-85b3cc42] {
+            padding-left: 6px;
+            font-size: 12px;
+            border-bottom: 1px solid #ddd
+        }
+
+        .container .header .footer[data-v-85b3cc42] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            margin: 12px 0 12px 34px
+        }
+
+        .container .header .footer .bg-success[data-v-85b3cc42] {
+            color: #fff
+        }
+
+        .container .header .footer uni-button[data-v-85b3cc42] {
+            font-size: 14px
+        }
+
+        .container .header .footer .change-nick-name[data-v-85b3cc42] {
+            color: #2a67fe
+        }
+
+        .container .content-wrap[data-v-85b3cc42] {
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 6px;
+            padding: 10px 20px
+        }
+
+        .container .content-wrap .list-item[data-v-85b3cc42] {
+            padding: 10px 0;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            border-bottom: 2px solid #f2f2f2
+        }
+
+        .container .content-wrap .list-item .content-left[data-v-85b3cc42] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .container .content-wrap .list-item .content-left .icon-image[data-v-85b3cc42] {
+            width: 18px;
+            height: 20px;
+            margin-right: 10px
+        }
+
+        .container .content-wrap .list-item .icon[data-v-85b3cc42] {
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease
+        }
+
+        .container .content-wrap .list-item .up[data-v-85b3cc42] {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg)
+        }
+
+        .container .logout[data-v-85b3cc42] {
+            margin-bottom: 50px;
+            margin-top: 20px;
+            border-radius: 8px
+        }
+
+        .container .logout uni-button[data-v-85b3cc42] {
+            color: #ff4019;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3)
+        }
+
+        .container uni-button[data-v-85b3cc42]:after {
+            border: none
+        }
+    </style>
+    <style type="text/css">
+        @charset "UTF-8";
+
+        /**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+        /**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+        /* 颜色变量 */
+        /* 行为相关颜色 */
+        /* 文字基本颜色 */
+        /* 背景颜色 */
+        /* 边框颜色 */
+        /* 尺寸变量 */
+        /* 文字尺寸 */
+        /* 图片尺寸 */
+        /* Border Radius */
+        /* 水平间距 */
+        /* 垂直间距 */
+        /* 透明度 */
+        /* 文章场景相关 */
+        .status_bar[data-v-c500633e] {
+            height: 0;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            background-color: #fff
+        }
+
+        #main-content[data-v-c500633e] {
+            position: relative;
+            overflow: hidden
+        }
+
+        #main-content .content[data-v-c500633e] {
+            padding-bottom: 50px;
+            overflow: scroll
+        }
+
+        .tabbar-wrapper[data-v-c500633e] {
+            position: fixed;
+            z-index: 999;
+            bottom: 0;
+            height: 50px;
+            background-color: #fff;
+            width: 100%
+        }
+
+        .tabbar-wrapper .tabbar[data-v-c500633e] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            height: 50px;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item[data-v-c500633e] {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item .icon[data-v-c500633e] {
+            height: 24px;
+            width: 24px
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item .unactive[data-v-c500633e] {
+            display: block
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item .active[data-v-c500633e] {
+            display: none
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item uni-text[data-v-c500633e] {
+            color: #aaa;
+            font-size: 15px
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item.current .unactive[data-v-c500633e] {
+            display: none
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item.current .active[data-v-c500633e] {
+            display: block
+        }
+
+        .tabbar-wrapper .tabbar .tabbar-item.current uni-text[data-v-c500633e] {
+            color: #000;
+            font-size: 15px
+        }
+    </style>
+</head>
+
+<body class="uni-body pages-home-index"><noscript><strong>Please enable JavaScript to continue.</strong></noscript>
+    <uni-app class="uni-app--maxwidth">
+        <uni-page data-page="pages/home/index">
+            <!---->
+            <!---->
+            <uni-page-wrapper>
+                <uni-page-body>
+                    <uni-view data-v-c500633e="" id="main-content">
+                        <uni-view data-v-c500633e="" class="content">
+                            <uni-view data-v-4f6aeec4="" data-v-c500633e="" class="container mt-72">
+                                <uni-view data-v-4f6aeec4="" class="download">
+                                    <uni-view data-v-4f6aeec4="">
+                                        <uni-image data-v-4f6aeec4="" class="logo">
+                                            <div
+                                                style="background-image: url(&quot;/static/logo.png&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div><img src="/static/logo.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                        <uni-text data-v-4f6aeec4="" class="title"><span>Open with an app</span>
+                                        </uni-text>
+                                    </uni-view>
+                                    <uni-view data-v-4f6aeec4="" class="d-btn">
+                                        <uni-image data-v-4f6aeec4="" class="d-btn-logo">
+                                            <div
+                                                style="background-image: url(&quot;/static/download.png&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div><img src="/static/download.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </uni-view>
+                                </uni-view>
+                                <uni-view data-v-4f6aeec4="" class="welcome-wrapper">
+                                    <uni-text data-v-4f6aeec4="" class="welcome"><span>Welcome Back</span></uni-text>
+                                    <uni-text data-v-4f6aeec4="" class="sub-title"><span>Quality Guarantee</span>
+                                    </uni-text>
+                                </uni-view>
+                                <uni-swiper data-v-4f6aeec4="" class="swiper-item-wrapper">
+                                    <div class="uni-swiper-wrapper">
+                                        <div class="uni-swiper-slides">
+                                            <div class="uni-swiper-slide-frame"
+                                                style="width: 100%; height: 100%; transform: translate(-200%, 0px) translateZ(0px);">
+                                                <uni-swiper-item data-v-4f6aeec4=""
+                                                    style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                                                    <uni-view data-v-4f6aeec4="" class="swiper-item">
+                                                        <uni-image data-v-4f6aeec4="">
+                                                            <div
+                                                                style="background-image: url(&quot;/static/banner/banner1.png&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                                                            </div><img src="/static/banner/banner1.png"
+                                                                draggable="true">
+                                                            <!---->
+                                                        </uni-image>
+                                                    </uni-view>
+                                                </uni-swiper-item>
+                                                <uni-swiper-item data-v-4f6aeec4=""
+                                                    style="position: absolute; width: 100%; height: 100%; transform: translate(100%, 0px) translateZ(0px);">
+                                                    <uni-view data-v-4f6aeec4="" class="swiper-item">
+                                                        <uni-image data-v-4f6aeec4="">
+                                                            <div
+                                                                style="background-image: url(&quot;/static/banner/banner2.png&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                                                            </div><img src="/static/banner/banner2.png"
+                                                                draggable="true">
+                                                            <!---->
+                                                        </uni-image>
+                                                    </uni-view>
+                                                </uni-swiper-item>
+                                                <uni-swiper-item data-v-4f6aeec4=""
+                                                    style="position: absolute; width: 100%; height: 100%; transform: translate(200%, 0px) translateZ(0px);">
+                                                    <uni-view data-v-4f6aeec4="" class="swiper-item">
+                                                        <uni-image data-v-4f6aeec4="">
+                                                            <div
+                                                                style="background-image: url(&quot;/static/banner/banner3.png&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                                                            </div><img src="/static/banner/banner3.png"
+                                                                draggable="true">
+                                                            <!---->
+                                                        </uni-image>
+                                                    </uni-view>
+                                                </uni-swiper-item>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </uni-swiper>
+                                <uni-view data-v-4f6aeec4="" class="goods-wrapper">
+                                    <uni-view data-v-4f6aeec4="" class="goods-item">
+                                        <uni-image data-v-4f6aeec4="" class="goods-logo">
+                                            <div
+                                                style="background-image: url(&quot;https://dlfmalls.com/common/upload/161486742561756.jpg&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                                            </div><img src="https://dlfmalls.com/common/upload/161486742561756.jpg"
+                                                draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                        <uni-view data-v-4f6aeec4="" class="title">Yellow Chimes A5 Grade American
+                                            Crystal Traditional Gold Plated Without Piercing Combo Nose Pins for Women
+                                            &amp; Girls</uni-view>
+                                        <uni-view data-v-4f6aeec4="" class="desc">Yellow Chimes A5 Grade American
+                                            Crystal Traditional Gold Plated Without Piercing Combo Nose Pins for Women
+                                            &amp; Girls</uni-view>
+                                        <uni-view data-v-4f6aeec4="" class="price">1499.00</uni-view>
+                                    </uni-view>
+                                    <uni-view data-v-4f6aeec4="" class="goods-item">
+                                        <uni-image data-v-4f6aeec4="" class="goods-logo">
+                                            <div
+                                                style="background-image: url(&quot;https://dlfmalls.com/common/upload/161486743500327.jpg&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                                            </div><img src="https://dlfmalls.com/common/upload/161486743500327.jpg"
+                                                draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                        <uni-view data-v-4f6aeec4="" class="title">PC Jeweller The Quizmu 18KT Yellow
+                                            Gold and Diamond Nose Pin for Women</uni-view>
+                                        <uni-view data-v-4f6aeec4="" class="desc">PC Jeweller The Quizmu 18KT Yellow
+                                            Gold and Diamond Nose Pin for Women</uni-view>
+                                        <uni-view data-v-4f6aeec4="" class="price">24336.00</uni-view>
+                                    </uni-view>
+                                    <uni-view data-v-4f6aeec4="" class="goods-item">
+                                        <uni-image data-v-4f6aeec4="" class="goods-logo">
+                                            <div
+                                                style="background-image: url(&quot;https://dlfmalls.com/common/upload/161486744418354.jpg&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                                            </div><img src="https://dlfmalls.com/common/upload/161486744418354.jpg"
+                                                draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                        <uni-view data-v-4f6aeec4="" class="title">PC Jeweller The Fallamhain 18KT
+                                            Yellow Gold and Diamond Nose Pin for Women</uni-view>
+                                        <uni-view data-v-4f6aeec4="" class="desc">PC Jeweller The Fallamhain 18KT Yellow
+                                            Gold and Diamond Nose Pin for Women</uni-view>
+                                        <uni-view data-v-4f6aeec4="" class="price">13486.00</uni-view>
+                                    </uni-view>
+                                    <uni-view data-v-4f6aeec4="" class="goods-item">
+                                        <uni-image data-v-4f6aeec4="" class="goods-logo">
+                                            <div
+                                                style="background-image: url(&quot;https://dlfmalls.com/common/upload/161486745194627.jpg&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                                            </div><img src="https://dlfmalls.com/common/upload/161486745194627.jpg"
+                                                draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                        <uni-view data-v-4f6aeec4="" class="title">PC Jeweller The Cormack 18KT Yellow
+                                            Gold and Diamond Nose Pin for Women</uni-view>
+                                        <uni-view data-v-4f6aeec4="" class="desc">PC Jeweller The Cormack 18KT Yellow
+                                            Gold and Diamond Nose Pin for Women</uni-view>
+                                        <uni-view data-v-4f6aeec4="" class="price">6537.00</uni-view>
+                                    </uni-view>
+                                </uni-view>
+                            </uni-view>
+                        </uni-view>
+                        <!---->
+                        <uni-view data-v-c500633e="" class="tabbar-wrapper">
+                            <uni-view data-v-c500633e="" class="tabbar have">
+                                <uni-view data-v-c500633e="" class="tabbar-item current">
+                                    <uni-image data-v-c500633e="" class="icon unactive">
+                                        <div
+                                            style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABHNCSVQICAgIfAhkiAAAA5xJREFUeF7t3E1W2zAQAGAN7wHLcoO2J4DeIOy6a3sC4AbpAtu7wi4Si9ITEE5Qlt2VGxRO0PYGsCS85+kbnp06wrEk/0i2mSwTCzyfZxSN7RgEvyoFgH2qBRjIkCG9AIqi6AAADoUQk2x/rxFxrpS6DJ3hwYHiOL4QQhBO2WsupTwKiRQUyICTuwRFCgZkiRMcyTvQdDrd2draugCAj1rp3CPiU6kBwFwI8Ur7PEgmeQXKcH4CwJ6Ok6bp5Ozs7IbePz4+3tvY2LjWkRDxZrFY7J+fn9/5mpe8AVXg3D48PEz0oAkJAK4A4HURwzeSFyBXnByExm1vb1Mm7YZC6hyoLk5fkDoFaorTB6TOgNrCCY3UCVDbOCGRWgfqCicUUqtAXeOEQGoNyBeOb6RWgHzj+ERqDBQKxxdSI6CsHaDGU++tStuHrvqnLlfctYEyHGo8d7TAveJYZNIdIu7njbDrQaoFtA4HES8Xi8XUZ7ddDDjLJDpV8kHr3WojOQNV4Sil1p06dT1wjbaPomgOAAdtIDkBDQEnR2kLyRpoSDhtIlkBDRGnLSQj0JBx2kCqBBoDTlOktUBjwmmCVAo0Rpy6SM+AKnB+IOLs8fHxNtRCsNHiSAhBC8nNzc1dAEgA4L3NOmkFqAKHLuY9/T1EPFVKnTTd2RDjoyg6AYAvWRzLmPJ9QcRnK+4lUJIkkzRNv+u9FSLeAsDysstYgDKkldiy91aQlkBxHP8WQrzR0o5uP/mTq48pg/JYKGa9LaGYpZRvaZsiEF3OXV4PzzOlmJZjBKLpQo9RCHEvpXw6S1EssUNEpHt1qDaPZrMZdcXiJQBRnEmSlMa/MknTLE8bF7+lXgoQxV0Wv7HVeElAZd+sDGRYsjAQA/0vnDrTBWcQZxBnkHVbxyVmoGIgBrKuptINe51BURR9LbmGXytiuhVYKfXZdXCvgeI4RteAqraXUhqXKPp4BhryHMQZZDh6OhCdkHMpueJZTRo3+hJzDVAHdh1f9+SfcaKrM7GVZUbTAJuOZyCLeq1zsDmD+tLNNy2RpuO5xLjEVlfi/C2mZQSXmONCkzOIM8itG+cSG2qJFS/qW3yTWm/iOoe0fTaAdhQRPymlrqp22riSzp6C8Ms6cssN+wCUpuk7049cjEDZCvTZbx8sHdZu1gOgb1LKqSkOK6B8mU7P+dEfFWH6B+s+DwWEiH+FEPTwJqv7LK2B6kIMfRwDGY4gAxmA/gFMZB2UsMf6pwAAAABJRU5ErkJggg==&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div><img
+                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABHNCSVQICAgIfAhkiAAAA5xJREFUeF7t3E1W2zAQAGAN7wHLcoO2J4DeIOy6a3sC4AbpAtu7wi4Si9ITEE5Qlt2VGxRO0PYGsCS85+kbnp06wrEk/0i2mSwTCzyfZxSN7RgEvyoFgH2qBRjIkCG9AIqi6AAADoUQk2x/rxFxrpS6DJ3hwYHiOL4QQhBO2WsupTwKiRQUyICTuwRFCgZkiRMcyTvQdDrd2draugCAj1rp3CPiU6kBwFwI8Ur7PEgmeQXKcH4CwJ6Ok6bp5Ozs7IbePz4+3tvY2LjWkRDxZrFY7J+fn9/5mpe8AVXg3D48PEz0oAkJAK4A4HURwzeSFyBXnByExm1vb1Mm7YZC6hyoLk5fkDoFaorTB6TOgNrCCY3UCVDbOCGRWgfqCicUUqtAXeOEQGoNyBeOb6RWgHzj+ERqDBQKxxdSI6CsHaDGU++tStuHrvqnLlfctYEyHGo8d7TAveJYZNIdIu7njbDrQaoFtA4HES8Xi8XUZ7ddDDjLJDpV8kHr3WojOQNV4Sil1p06dT1wjbaPomgOAAdtIDkBDQEnR2kLyRpoSDhtIlkBDRGnLSQj0JBx2kCqBBoDTlOktUBjwmmCVAo0Rpy6SM+AKnB+IOLs8fHxNtRCsNHiSAhBC8nNzc1dAEgA4L3NOmkFqAKHLuY9/T1EPFVKnTTd2RDjoyg6AYAvWRzLmPJ9QcRnK+4lUJIkkzRNv+u9FSLeAsDysstYgDKkldiy91aQlkBxHP8WQrzR0o5uP/mTq48pg/JYKGa9LaGYpZRvaZsiEF3OXV4PzzOlmJZjBKLpQo9RCHEvpXw6S1EssUNEpHt1qDaPZrMZdcXiJQBRnEmSlMa/MknTLE8bF7+lXgoQxV0Wv7HVeElAZd+sDGRYsjAQA/0vnDrTBWcQZxBnkHVbxyVmoGIgBrKuptINe51BURR9LbmGXytiuhVYKfXZdXCvgeI4RteAqraXUhqXKPp4BhryHMQZZDh6OhCdkHMpueJZTRo3+hJzDVAHdh1f9+SfcaKrM7GVZUbTAJuOZyCLeq1zsDmD+tLNNy2RpuO5xLjEVlfi/C2mZQSXmONCkzOIM8itG+cSG2qJFS/qW3yTWm/iOoe0fTaAdhQRPymlrqp22riSzp6C8Ms6cssN+wCUpuk7049cjEDZCvTZbx8sHdZu1gOgb1LKqSkOK6B8mU7P+dEfFWH6B+s+DwWEiH+FEPTwJqv7LK2B6kIMfRwDGY4gAxmA/gFMZB2UsMf6pwAAAABJRU5ErkJggg=="
+                                            draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-image data-v-c500633e="" class="icon active">
+                                        <div
+                                            style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABHNCSVQICAgIfAhkiAAAAyRJREFUeF7t3MuR1DAQBuB/I2AzACJgyQBu3IAIYDOAGzfgxo0iAiCC5cgNMoCNAMgAIoD6KbtK02M9Wk/b0z7ujMfqzy2NWvLsGewICpyZT1jAgCIZshagJwCeArg3tfcrgA8APo7O8DUAvZ9wliyIdDkSaTRQCGd2GYo0EigFZzjSCKBzAMR5JLrOH6erMWtuiNeHZFJvIOJ8AXCxgMMB+vv0d77OgVoi8fX7AH73Gpd6AvlwrqdvLxk0kT4BuCkwuiL1AtLizCY8j5l0ZxRSD6BcnFUgtQYqxRmO1BKoFs5QpFZAtXGGIbUAaoUzBKk2UGuc7kg1gXrhdEWqBdQbpxtSDaBROF2QSoFYDrDwlLWVr3xoVUI1m3GXABGFhScb5x69cWKZxBqPBe5cCKtuUi6QD4dLpM96VtsiWt4sLos8FH/PRsoBCuFwXXkNB5G4zu0eWUhaoC3gzChVkDRAW8KphpQKtEWcKkgpQFvGKUaKAe0BpwgpBLQnnGwkH9AecbKQloB8OJ8BvAHAmXK3bZfKkypOJLkB8ALAg5R5kgTy4bif9RrAq8oN7/VxbPfLwMWOJpMuEDfurjy1lbvtsicg9ga5pXSA5AL9AHBL6LK2+inU9wTEWBizLEsY821auECUc7d6ZwiZlnsDYnwyRj4n8H+VwgViocm1HR58Joe1DI9TAGKci/HLQXpe23G/pU4FiEhH8cdm0qeUQYtfbgYUmbIYkAEd9Bz1eGoZZBlkGaSp46yLRbQMyIA0Her4vavOoLcLe/i54XIb+XnGyasG+psRUOiUlCmKPN+AtjwGWQZF7p4E4sKb5pBrybvvYtoAJbD2/Kylm5SLqAc2T1qUBlh6vgEl9Ff1zbYMWlE1X9pFSs+3LmZd7FAgZXjY9ExaG6B1MeVEUwtsY5CNQTYGBXNgtWOQu6mfkMXJb9GOIbVXA9jQx9Nv872NTmkknzr7lhx2+htTru1+Wgugu7EfuaQ2cumx/nSK5XemXns+uzbQu+mHN8E4NI1kocfuJv9VRC6U5tq8Ri2gX9OzT0nPWWobmYux2fMMKHLrDCgC9A/EvFdYqjWWzAAAAABJRU5ErkJggg==&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div><img
+                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABHNCSVQICAgIfAhkiAAAAyRJREFUeF7t3MuR1DAQBuB/I2AzACJgyQBu3IAIYDOAGzfgxo0iAiCC5cgNMoCNAMgAIoD6KbtK02M9Wk/b0z7ujMfqzy2NWvLsGewICpyZT1jAgCIZshagJwCeArg3tfcrgA8APo7O8DUAvZ9wliyIdDkSaTRQCGd2GYo0EigFZzjSCKBzAMR5JLrOH6erMWtuiNeHZFJvIOJ8AXCxgMMB+vv0d77OgVoi8fX7AH73Gpd6AvlwrqdvLxk0kT4BuCkwuiL1AtLizCY8j5l0ZxRSD6BcnFUgtQYqxRmO1BKoFs5QpFZAtXGGIbUAaoUzBKk2UGuc7kg1gXrhdEWqBdQbpxtSDaBROF2QSoFYDrDwlLWVr3xoVUI1m3GXABGFhScb5x69cWKZxBqPBe5cCKtuUi6QD4dLpM96VtsiWt4sLos8FH/PRsoBCuFwXXkNB5G4zu0eWUhaoC3gzChVkDRAW8KphpQKtEWcKkgpQFvGKUaKAe0BpwgpBLQnnGwkH9AecbKQloB8OJ8BvAHAmXK3bZfKkypOJLkB8ALAg5R5kgTy4bif9RrAq8oN7/VxbPfLwMWOJpMuEDfurjy1lbvtsicg9ga5pXSA5AL9AHBL6LK2+inU9wTEWBizLEsY821auECUc7d6ZwiZlnsDYnwyRj4n8H+VwgViocm1HR58Joe1DI9TAGKci/HLQXpe23G/pU4FiEhH8cdm0qeUQYtfbgYUmbIYkAEd9Bz1eGoZZBlkGaSp46yLRbQMyIA0Her4vavOoLcLe/i54XIb+XnGyasG+psRUOiUlCmKPN+AtjwGWQZF7p4E4sKb5pBrybvvYtoAJbD2/Kylm5SLqAc2T1qUBlh6vgEl9Ff1zbYMWlE1X9pFSs+3LmZd7FAgZXjY9ExaG6B1MeVEUwtsY5CNQTYGBXNgtWOQu6mfkMXJb9GOIbVXA9jQx9Nv872NTmkknzr7lhx2+htTru1+Wgugu7EfuaQ2cumx/nSK5XemXns+uzbQu+mHN8E4NI1kocfuJv9VRC6U5tq8Ri2gX9OzT0nPWWobmYux2fMMKHLrDCgC9A/EvFdYqjWWzAAAAABJRU5ErkJggg=="
+                                            draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-text data-v-c500633e=""><span>Home</span></uni-text>
+                                </uni-view>
+                                <uni-view data-v-c500633e="" class="tabbar-item">
+                                    <uni-image data-v-c500633e="" class="icon unactive">
+                                        <div
+                                            style="background-image: url(&quot;data:image/png;base64,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&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div><img
+                                            src="data:image/png;base64,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"
+                                            draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-image data-v-c500633e="" class="icon active">
+                                        <div
+                                            style="background-image: url(&quot;data:image/png;base64,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&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div><img
+                                            src="data:image/png;base64,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"
+                                            draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-text data-v-c500633e=""><span>Search</span></uni-text>
+                                </uni-view>
+                                <uni-view data-v-c500633e="" class="tabbar-item" style="display: none;">
+                                    <uni-image data-v-c500633e="" class="icon unactive">
+                                        <div
+                                            style="background-image: url(&quot;data:image/png;base64,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&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div><img
+                                            src="data:image/png;base64,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"
+                                            draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-image data-v-c500633e="" class="icon active">
+                                        <div
+                                            style="background-image: url(&quot;data:image/png;base64,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&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div><img
+                                            src="data:image/png;base64,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"
+                                            draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-text data-v-c500633e=""><span>Win</span></uni-text>
+                                </uni-view>
+                                <uni-view data-v-c500633e="" class="tabbar-item">
+                                    <uni-image data-v-c500633e="" class="icon unactive">
+                                        <div
+                                            style="background-image: url(&quot;data:image/png;base64,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&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div><img
+                                            src="data:image/png;base64,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"
+                                            draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-image data-v-c500633e="" class="icon active">
+                                        <div
+                                            style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABHNCSVQICAgIfAhkiAAABStJREFUeF7tm4+xDjEQwPdVgApQASpABagAFaACVIAKeBWgAlSAClABKmB+5kLst7kkd7v53s1cZr5h5t3lsr/b3eyf3InsY5bAyc5nnsAOqKIhO6AzDOiSiNwSkRsicn76XZ3W+0lEfky/9yLyVkS+HsMdjNYgQDwQkXsiAqCeAaBXIvJiAtdz7+JrRwICzJNJUxYveILDPIAKHyMAoSmvRSSZj5dQmOHNaG2KBgSUdwWt+Skib0QEH4P58G8+8E3A5d/bInLOIIufAhKwQkYkIOB8NFYNGEzkeadED6f7LFDXoiBFAcIZfzE051REEJQ3v2QwL2DvqpuZ7/KKeYtriQKE5mif82iB1pQWDuRn6o+YGZrkOiIAYT6P1So94aSpLUhPJzN0g+QNyDItzIq4J2IQF+Xm5m5q3oC09uCQ2YmW+pwaVF4IO2DuuF21yBsQjjmPkF0XW6ClXwrAcNguwxOQ3tajtScBsLTIbdv3BKSdJgkmAd6IQcBJ4puG26bgCYhI+Hq2yPtTcjkCEJvAy+xBH6YIfPWzPQHp2MdNzRuk1ObtFhN5AvqlBPGcu4GRhDzfU4iQBbaQma4Jef4OqPIGdkA7oA4jNS711CAi2IvZM0buYhTVKMyl8W1Bzdsk6Qloj4MqyqpzosgsXi9FR9JuOaCnBpFWUJxPgwz+wjoP0Hz3d1W9pE6ta9zNk+UXegJiXqDkpYcR6YZOM0iSSWBdhjcgXcByC/lnpNUpjqtpewOyOhlu6m5A0rsXl7junt6AWKDezdzLoBMoq7zrlsWnlxEBiIoilcV8sMvccXEK/yZhQ9D1JiqJroccIgAhgtXZwD/htD0GtR/dCHDb2iN3sXxuHPQVRcMDkgXnc0Dv/8/SozSIuTE1IOlWMT6KkmhvP50NgGYhjjkfobXvSEAIgVAAsfrptJA5wlLzGYDm6Aw1bz2AA7Be2M1mHg0oQcK0tLmlRSIcTpzdLgkKWHYpnHDp2AxmhR8KgxNtYvlbQlgg5Z2H5rdoXEjHBDhRDcm/jxyhQbl8aASmlZdFekBRxsDU0LghYzSgJBRvn1/eJpoTGI0BClo4dBwLUBIS08PJ4mdwxqltjePmh3/ByYebUon6sQEN1YYlD9sBVaiNBIS/yc1IB3yYmz5Ini8/FcCS+ZGYho8oQIAASPIv3keA8xgq+SmA1YLObqCegNAATnuxO0UBqQkILHY6imYujt0DEFpCKjDqqEsNUvo7YQGpzKra9BpAmBGHNVvPH5Ia8IYxgzytQKCSELmfSukHz+X/pdRFAwQUyfEi81sKCDDUfGrBHYLzi8qXAJVO4teCTtZLzahr9ALCz9DBnEsgSSWGR7xZcksqMpcYd33f0QMIKBSrLDjsILyhVfbe9WrnL0arWI+lVWgzlc0mrW4FVPooheQRH3RWwGhsgEKbdXLc/BFMC6CSWQ0rOazULNaPo9ba1PQ5VQsgfI6Oel2bcysBtN6um5pp98QnFUcNkG7rMtEW4SQAFqTZI8NzgIY05lpfv+N1XY3NOUDWdxc460UBl6OAa6ey2uPFntocoGN8d7FW+Nb7m7/vKAGyKHPWxyUBbJUi8DqrPU5r/KDWXQKkCY/87iKQy39T61NpJLYHvbcSIO3ITLqjJAl6TtP3HSVA+kib+6mJIKF7ptVuxDwyWAKkj/X3PHjL1x7wKAHSZ563LHTr2s2zja1OuvUhW77OjIVqgSKObGmbeCuwqEiQgpgFwFouthUhw9a5A6qg3QHtgNZZ32/gDwlY70lCPgAAAABJRU5ErkJggg==&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div><img
+                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABHNCSVQICAgIfAhkiAAABStJREFUeF7tm4+xDjEQwPdVgApQASpABagAFaACVIAKeBWgAlSAClABKmB+5kLst7kkd7v53s1cZr5h5t3lsr/b3eyf3InsY5bAyc5nnsAOqKIhO6AzDOiSiNwSkRsicn76XZ3W+0lEfky/9yLyVkS+HsMdjNYgQDwQkXsiAqCeAaBXIvJiAtdz7+JrRwICzJNJUxYveILDPIAKHyMAoSmvRSSZj5dQmOHNaG2KBgSUdwWt+Skib0QEH4P58G8+8E3A5d/bInLOIIufAhKwQkYkIOB8NFYNGEzkeadED6f7LFDXoiBFAcIZfzE051REEJQ3v2QwL2DvqpuZ7/KKeYtriQKE5mif82iB1pQWDuRn6o+YGZrkOiIAYT6P1So94aSpLUhPJzN0g+QNyDItzIq4J2IQF+Xm5m5q3oC09uCQ2YmW+pwaVF4IO2DuuF21yBsQjjmPkF0XW6ClXwrAcNguwxOQ3tajtScBsLTIbdv3BKSdJgkmAd6IQcBJ4puG26bgCYhI+Hq2yPtTcjkCEJvAy+xBH6YIfPWzPQHp2MdNzRuk1ObtFhN5AvqlBPGcu4GRhDzfU4iQBbaQma4Jef4OqPIGdkA7oA4jNS711CAi2IvZM0buYhTVKMyl8W1Bzdsk6Qloj4MqyqpzosgsXi9FR9JuOaCnBpFWUJxPgwz+wjoP0Hz3d1W9pE6ta9zNk+UXegJiXqDkpYcR6YZOM0iSSWBdhjcgXcByC/lnpNUpjqtpewOyOhlu6m5A0rsXl7junt6AWKDezdzLoBMoq7zrlsWnlxEBiIoilcV8sMvccXEK/yZhQ9D1JiqJroccIgAhgtXZwD/htD0GtR/dCHDb2iN3sXxuHPQVRcMDkgXnc0Dv/8/SozSIuTE1IOlWMT6KkmhvP50NgGYhjjkfobXvSEAIgVAAsfrptJA5wlLzGYDm6Aw1bz2AA7Be2M1mHg0oQcK0tLmlRSIcTpzdLgkKWHYpnHDp2AxmhR8KgxNtYvlbQlgg5Z2H5rdoXEjHBDhRDcm/jxyhQbl8aASmlZdFekBRxsDU0LghYzSgJBRvn1/eJpoTGI0BClo4dBwLUBIS08PJ4mdwxqltjePmh3/ByYebUon6sQEN1YYlD9sBVaiNBIS/yc1IB3yYmz5Ini8/FcCS+ZGYho8oQIAASPIv3keA8xgq+SmA1YLObqCegNAATnuxO0UBqQkILHY6imYujt0DEFpCKjDqqEsNUvo7YQGpzKra9BpAmBGHNVvPH5Ia8IYxgzytQKCSELmfSukHz+X/pdRFAwQUyfEi81sKCDDUfGrBHYLzi8qXAJVO4teCTtZLzahr9ALCz9DBnEsgSSWGR7xZcksqMpcYd33f0QMIKBSrLDjsILyhVfbe9WrnL0arWI+lVWgzlc0mrW4FVPooheQRH3RWwGhsgEKbdXLc/BFMC6CSWQ0rOazULNaPo9ba1PQ5VQsgfI6Oel2bcysBtN6um5pp98QnFUcNkG7rMtEW4SQAFqTZI8NzgIY05lpfv+N1XY3NOUDWdxc460UBl6OAa6ey2uPFntocoGN8d7FW+Nb7m7/vKAGyKHPWxyUBbJUi8DqrPU5r/KDWXQKkCY/87iKQy39T61NpJLYHvbcSIO3ITLqjJAl6TtP3HSVA+kib+6mJIKF7ptVuxDwyWAKkj/X3PHjL1x7wKAHSZ563LHTr2s2zja1OuvUhW77OjIVqgSKObGmbeCuwqEiQgpgFwFouthUhw9a5A6qg3QHtgNZZ32/gDwlY70lCPgAAAABJRU5ErkJggg=="
+                                            draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-text data-v-c500633e=""><span>My</span></uni-text>
+                                </uni-view>
+                            </uni-view>
+                        </uni-view>
+                    </uni-view>
+                </uni-page-body>
+            </uni-page-wrapper>
+        </uni-page>
+        <!---->
+        <!---->
+        <uni-actionsheet>
+            <div class="uni-mask uni-actionsheet__mask" style="display: none;"></div>
+            <div class="uni-actionsheet">
+                <div class="uni-actionsheet__menu">
+                    <!---->
+                    <!---->
+                    <div style="max-height: 260px; overflow: hidden;">
+                        <div style="transform: translateY(0px) translateZ(0px);"></div>
+                    </div>
+                </div>
+                <div class="uni-actionsheet__action">
+                    <div class="uni-actionsheet__cell" style="color: rgb(0, 0, 0);"> 取消 </div>
+                </div>
+                <div></div>
+            </div>
+            <!---->
+        </uni-actionsheet>
+        <uni-modal style="display: none;">
+            <div class="uni-mask"></div>
+            <div class="uni-modal">
+                <!---->
+                <div class="uni-modal__bd"></div>
+                <div class="uni-modal__ft">
+                    <div class="uni-modal__btn uni-modal__btn_default" style="color: rgb(0, 0, 0);"> 取消 </div>
+                    <div class="uni-modal__btn uni-modal__btn_primary" style="color: rgb(0, 122, 255);"> 确定 </div>
+                </div>
+            </div>
+            <!---->
+        </uni-modal>
+        <!---->
+    </uni-app>
+    <script>/*BAIDU_STAT*/</script>
+    <script src="/static/js/chunk-vendors.06ed5640.js"></script>
+    <script src="/static/js/index.0f21a578.js"></script>
+    <div
+        style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px; z-index: -1; overflow: hidden; visibility: hidden;">
+        <div
+            style="position: absolute; width: 100px; height: 200px; box-sizing: border-box; overflow: hidden; padding-bottom: env(safe-area-inset-top);">
+            <div
+                style="transition: all 0s ease 0s; animation: 0s ease 0s 1 normal none running none; width: 400px; height: 400px;">
+            </div>
+        </div>
+        <div
+            style="position: absolute; width: 100px; height: 200px; box-sizing: border-box; overflow: hidden; padding-bottom: env(safe-area-inset-top);">
+            <div
+                style="transition: all 0s ease 0s; animation: 0s ease 0s 1 normal none running none; width: 250%; height: 250%;">
+            </div>
+        </div>
+        <div
+            style="position: absolute; width: 100px; height: 200px; box-sizing: border-box; overflow: hidden; padding-bottom: env(safe-area-inset-left);">
+            <div
+                style="transition: all 0s ease 0s; animation: 0s ease 0s 1 normal none running none; width: 400px; height: 400px;">
+            </div>
+        </div>
+        <div
+            style="position: absolute; width: 100px; height: 200px; box-sizing: border-box; overflow: hidden; padding-bottom: env(safe-area-inset-left);">
+            <div
+                style="transition: all 0s ease 0s; animation: 0s ease 0s 1 normal none running none; width: 250%; height: 250%;">
+            </div>
+        </div>
+        <div
+            style="position: absolute; width: 100px; height: 200px; box-sizing: border-box; overflow: hidden; padding-bottom: env(safe-area-inset-right);">
+            <div
+                style="transition: all 0s ease 0s; animation: 0s ease 0s 1 normal none running none; width: 400px; height: 400px;">
+            </div>
+        </div>
+        <div
+            style="position: absolute; width: 100px; height: 200px; box-sizing: border-box; overflow: hidden; padding-bottom: env(safe-area-inset-right);">
+            <div
+                style="transition: all 0s ease 0s; animation: 0s ease 0s 1 normal none running none; width: 250%; height: 250%;">
+            </div>
+        </div>
+        <div
+            style="position: absolute; width: 100px; height: 200px; box-sizing: border-box; overflow: hidden; padding-bottom: env(safe-area-inset-bottom);">
+            <div
+                style="transition: all 0s ease 0s; animation: 0s ease 0s 1 normal none running none; width: 400px; height: 400px;">
+            </div>
+        </div>
+        <div
+            style="position: absolute; width: 100px; height: 200px; box-sizing: border-box; overflow: hidden; padding-bottom: env(safe-area-inset-bottom);">
+            <div
+                style="transition: all 0s ease 0s; animation: 0s ease 0s 1 normal none running none; width: 250%; height: 250%;">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
